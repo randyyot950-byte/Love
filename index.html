@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love for BRY</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      color: white;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .character {
+      position: absolute;
+      bottom: 100px;
+      font-size: 60px;
+      animation: walk 12s linear forwards;
+    }
+
+    @keyframes walk {
+      from { left: -80px; }
+      to { left: 80%; }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0;
+      animation: appear 1s forwards;
+    }
+
+    @keyframes appear {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .name {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 48px;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px darkred, 0 0 40px crimson;
+      opacity: 0;
+      animation: showName 2s forwards;
+      animation-delay: 10s; /* muncul belakangan */
+    }
+
+    @keyframes showName {
+      from { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+      to { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="character">😊👉</div>
+  <div class="name">❤️ BRY ❤️</div>
+
+  <script>
+    // Koordinat kasar untuk bentuk hati
+    const heartCoords = [
+      {x:50,y:20},{x:55,y:25},{x:45,y:25},
+      {x:60,y:30},{x:40,y:30},
+      {x:65,y:35},{x:35,y:35},
+      {x:70,y:40},{x:30,y:40},
+      {x:50,y:60},{x:55,y:55},{x:45,y:55}
+    ];
+
+    let delay = 700;
+    heartCoords.forEach((pos, i) => {
+      setTimeout(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = pos.x + "%";
+        h.style.top = (100 - pos.y) + "%";
+        document.body.appendChild(h);
+      }, delay * i);
+    });
+  </script>
+</body>
+</html>
